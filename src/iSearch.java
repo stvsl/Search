@@ -6,9 +6,9 @@
      *          T get();
      *      若内部元素并非基本数据类型，请保证有 int compare(int a,int b) 函数，保证可正常运行
      * 2.   算法功能中并没有内置包含链表的相关操作
-     * 3.   排序内置模式：
+     * 3.   内置模式：
      *      如果你觉得1里面写的那种太麻烦了，那么你可以使用searchInside内置的版本，此类中内置线性表（仅基本类型泛型可使用）
-     * 4.   静态模式大多数查找可能无法使用，相关稳定性问题未测试，请勿使用静态模式
+     * 4.   所有函数均使用动态模式！！！请勿使用静态模式
      * 5.   代码已进入github仓库与gitee仓库（gitee自动同步github）
      *      github地址：https://github.com/stvsl/Search.git
      *      gitee地址：https://gitee.com/stvsl/Search.git
@@ -19,6 +19,7 @@ public interface iSearch<T> {
     /***
      * 普通模式
      * 返回查找元素所在位置
+     * 配置模式请使用三参数，内置模式使用双参数
      * 
      * @param key
      *             查询的元素
@@ -27,9 +28,12 @@ public interface iSearch<T> {
      ***/
     int search(T key, boolean high);
 
+    int search(SeqList<T> list, T key, boolean high);
+
     /***
      * 普通模式
      * 返回查找元素所在位置（二分法）
+     * 配置模式请使用三参数，内置模式使用双参数
      * 
      * @param key
      *             查询的元素
@@ -37,6 +41,8 @@ public interface iSearch<T> {
      *             升降序 true为升序模式，false为降序模式
      ***/
     int binarySearch(T key, boolean high);
+
+    int binarySearch(SeqList<T> list, T key, boolean high);
 
     /***
      * 哈希模式
