@@ -1,17 +1,18 @@
-public class SeqList <T>{
-    Object [] elements;
-    int size;
-    int MIN_SIZE = 8;
+public class SeqList {
+    private int [] elements;
+    private int length;
+    private int MIN_SIZE = 8;
     
     SeqList() {
-        elements = new Object[MIN_SIZE];
+        elements = new int[MIN_SIZE];
     }
     
     SeqList(int size) {
         if (size < MIN_SIZE) {
             size = MIN_SIZE;
         }
-        elements = new Object[size];
+        elements = new int[size];
+        this.length = 0;
     }
 
     /***
@@ -26,12 +27,12 @@ public class SeqList <T>{
      *          梯度
     ***/
     void autoBuildH(int size,int base,int noise,int diff) {
-        if(this.size != 0){
+        if(this.length != 0){
             System.out.println("自动构造失败：顺序表非空");
         }
-        elements[0] = (int)Math.random()*base + Math.random() *noise;
+        elements[0] = (int)(Math.random()*base + Math.random() *noise);
         for(int i = 1; i < size; i++){
-            elements[i] = (int)elements[i-1] + Math.random()*noise * diff *noise/10;
+            elements[i] = (int)(elements[i-1] + Math.random()*noise * diff *noise/10);
         }
     }
 
@@ -47,20 +48,33 @@ public class SeqList <T>{
      *          梯度
     ***/
     void autoBuildL(int size,int base,int noise,int diff){
-        if(this.size != 0){
+        if(this.length != 0){
             System.out.println("自动构造失败：顺序表非空");
         }
-        elements[0] = (int)Math.random()*base + Math.random() *noise;
+        elements[0] = (int)(Math.random()*base + Math.random() *noise);
         for(int i = 1; i < size; i++){
-            elements[i] = (int)elements[i-1] - Math.random()*noise * diff *noise/10;
+            elements[i] = (int)(elements[i-1] - Math.random()*noise * diff *noise/10);
         }
     }
     public int size() {
-        return size;
+        return length;
     }
-    
-    @SuppressWarnings("unchecked")
-    T get(int i){
-        return (T)elements[i];
+
+    int get(int i){
+        return elements[i];
+    }
+
+    public int compare(int x,int i){
+        if(x > elements[i]){
+            return 1;
+        }else if(x == elements[i]){
+            return 0;
+        }else{
+            return -1;
+        }
+    }
+
+    public int getIndex(int x){
+        return elements[x];
     }
 }
