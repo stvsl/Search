@@ -63,6 +63,14 @@ public interface iSearch<T> {
 
     /***
      * 哈希模式
+     * 线性探测模式哈希表查找
+     * @param key
+     *          查找的元素值
+     */
+    int LinearHashSearch(T key);
+
+    /***
+     * 哈希模式
      * 链式模式哈希表生成
      *  @param list
      *          顺序表位置
@@ -72,4 +80,11 @@ public interface iSearch<T> {
 
     void buildLinkedHash();
 
+    /***
+     * 哈希模式
+     * 链式模式哈希表查找
+     * @param key
+     *          查找的元素值
+     */
+    int LInkedHashSearch(T key);
 }
