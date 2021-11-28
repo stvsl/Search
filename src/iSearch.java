@@ -10,6 +10,8 @@
      *      如果你觉得1里面写的那种太麻烦了，那么你可以使用searchInside内置的版本，此类中内置线性表（仅基本类型泛型可使用）
      * 4.   静态模式大多数查找可能无法使用，相关稳定性问题未测试，请勿使用静态模式
      * 5.   代码已进入github仓库与gitee仓库（gitee自动同步github）
+     *      github地址：https://github.com/stvsl/Search.git
+     *      gitee地址：https://gitee.com/stvsl/Search.git
      *                                                 @author stvsl
      *                                                 @date 2021.11.28
      ****************************************************************/
