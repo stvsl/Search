@@ -7,6 +7,10 @@ public class SeqList {
         elements = new int[MIN_SIZE];
     }
     
+    SeqList(int[] elements) {
+        this.elements = elements;
+    }
+
     SeqList(int size) {
         if (size < MIN_SIZE) {
             size = MIN_SIZE;
@@ -64,7 +68,7 @@ public class SeqList {
         return elements[i];
     }
 
-    public int compare(int x,int i){
+    public int compareTo(int i,int x){
         if(x > elements[i]){
             return 1;
         }else if(x == elements[i]){
