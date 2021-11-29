@@ -1,10 +1,20 @@
 class Node{
-    int data;
+    Map data;
     Node next;
 
-    Node(int data, Node next){
+    Node(Map data, Node next){
         this.data = data;
         this.next = next;
+    }
+}
+
+class Map{
+    int data;
+    int i;
+
+    Map(int data, int i){
+        this.data = data;
+        this.i = i;
     }
 }
 
@@ -19,7 +29,10 @@ public class Search implements iSearch {
     int prime = 1; 
 
     //顺序哈希数组
-    int[] Seqhash = null;
+    Map[] Seqhash = null;
+
+    //链式哈希数组
+    Node[] linkhash = null;
 
     public void buildSeqList(int[] data){
         this.elements = data;
@@ -162,6 +175,12 @@ public class Search implements iSearch {
             getHashPrime();
         }
         return elements[i] % this.prime;
+    } 
+    public int gethash(int x) {
+        if(!primeOK){
+            getHashPrime();
+        }
+        return x % this.prime;
     }
 
     @Override
@@ -178,36 +197,70 @@ public class Search implements iSearch {
 
     @Override
     public void buildLinearHash() {
-        int size = elements.length>this.prime?this.elements.length*2:(int)((2 *this.prime - elements.length)/1.2);
-        Seqhash = new int[size];
+        getHashPrime();
+        int size = (int) (elements.length>=this.prime?this.elements.length*1.2:prime + (prime - elements.length)/2);
+        Seqhash = new Map[size];
         for(int i = 0; i < elements.length; i++){
+            System.out.print("当前是第" + i + "轮\t" + "元素：" + elements[i] + "\t");
             int p = hash(i);
-
+            while(Seqhash[p] != null){
+                System.out.print("位置后移" + " " + p + " ");
+                p = (++p)%Seqhash.length;
+            }
+            System.out.println("存储位置：" + p);
+            Seqhash[p] = new Map(elements[i],i);
         }
+        System.out.println("存储完毕");
     }
 
     @Override
     public int LinearHashSearch(int key) {
-        // TODO Auto-generated method stub
-        return 0;
+        int p = gethash(key);
+        while(Seqhash[p].data != key) {
+            p = (++p)%Seqhash.length;
+        }
+        return Seqhash[p].i;
+    }
+
+    //调试用代码（输出当前线性探测哈希表状态）
+    public void printSeqHash(){
+        for(int i = 0;i < Seqhash.length;i++){
+            System.out.print(Seqhash[i] + "\t");
+        }
+        System.out.println();
     }
 
     @Override
     public void buildLinkedHash(SeqList list) {
-        // TODO Auto-generated method stub
-        
+       // TODO Auto-generated method stub
     }
 
     @Override
     public void buildLinkedHash() {
-        // TODO Auto-generated method stub
-        
+        linkhash = new Node[this.prime+1];
+        for(int i = 0; i < Seqhash.length; i++){
+            linkhash[i] = new Node(null,null);
+        }
+        for(int i = 0; i < elements.length; i++){
+            int p = hash(i);
+            Node pos = linkhash[p];
+            while(pos.next != null){
+                pos = pos.next;
+            }
+            pos.data = new Map(elements[i],i);
+        }
     }
 
     @Override
     public int LInkedHashSearch(int key) {
-        // TODO Auto-generated method stub
-        return 0;
+        int p = gethash(key);
+        Node pos = linkhash[p];
+        while(pos.next != null){
+            if(pos.data.data == key){
+                break;
+            }
+        }
+        return pos.data.i;
     }
 
 }
