@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        // searchInsideTest();
+        searchInsideTest();
         searchLoadTest();
     }
 
@@ -11,7 +11,14 @@ public class App {
         println(s.search(seq, 6));
         println("二分法查找");
         println(s.binarySearch(seq, 6, true));
-        println(s.hash(seq, 7));
+        println("线性探测哈希表构造");
+        s.buildLinearHash(seq);
+        s.printSeqHash();
+        println("查找元素");
+        println(s.LinearHashSearch(6));
+        println("链式哈希表构建");
+        s.buildLinkedHash(seq);
+        println(s.LInkedHashSearch(6));
     }
 
     //手动构造测试

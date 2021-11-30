@@ -220,7 +220,20 @@ public class Search implements iSearch {
 
     @Override
     public void buildLinearHash(SeqList list) {
-        // TODO
+        getHashPrime(list);
+        int size = (int) (list.size()>=this.prime?list.size()*1.2:prime + (prime - elements.length)/2);
+        Seqhash = new Map[size];
+        for(int i=0;i < list.size(); i++){
+            System.out.print("当前是第" + i + "轮\t" + "元素：" + list.get(i) + "\t");
+            int p = hash(list,i);
+            while(Seqhash[p] != null){
+                System.out.print("位置后移" + " " + p + " ");
+                p = (++p)%Seqhash.length;
+            }
+            System.out.println("存储位置：" + p);
+            Seqhash[p] = new Map(list.get(i),i); 
+            System.out.println("存储完毕");
+        }
     }
 
     @Override
@@ -260,13 +273,24 @@ public class Search implements iSearch {
 
     @Override
     public void buildLinkedHash(SeqList list) {
-       // TODO Auto-generated method stub
+        linkhash = new Node[this.prime];
+        for(int i = 0;i < prime;i++){
+            linkhash[i] = new Node(null, null);
+        }
+        for(int i = 0;i < list.size();i++){
+            int p = gethash(list.getIndex(i));
+            Node pos = this.linkhash[p];
+            while(pos.next != null){
+                pos = pos.next;
+            }
+            pos.data = new Map(list.get(i),i);
+        }
     }
 
     @Override
     public void buildLinkedHash() {
-        linkhash = new Node[this.prime+1];
-        for(int i = 0; i < Seqhash.length; i++){
+        linkhash = new Node[this.prime];
+        for(int i = 0; i < prime; i++){
             linkhash[i] = new Node(null,null);
         }
         for(int i = 0; i < elements.length; i++){
