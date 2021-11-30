@@ -9,6 +9,7 @@ public class SeqList {
     
     SeqList(int[] elements) {
         this.elements = elements;
+        this.length = elements.length;
     }
 
     SeqList(int size) {

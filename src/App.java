@@ -1,6 +1,17 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        searchInsideTest();
+        // searchInsideTest();
+        searchLoadTest();
+    }
+
+    private static void searchLoadTest() {
+        println("配置模式测试 \n普通查找");
+        Search s = new Search();
+        SeqList seq = new SeqList(new int[]{1,2,3,4,5,6,7,8});
+        println(s.search(seq, 6));
+        println("二分法查找");
+        println(s.binarySearch(seq, 6, true));
+        println(s.hash(seq, 7));
     }
 
     //手动构造测试

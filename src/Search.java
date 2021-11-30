@@ -185,14 +185,42 @@ public class Search implements iSearch {
 
     @Override
     public int hash(SeqList list, int i) {
-        // TODO Auto-generated method stub
-        return 0;
+        if(!primeOK){
+            getHashPrime(list);
+        }
+        return list.getIndex(i)%this.prime;
+    }
+
+    private void getHashPrime(SeqList list) {
+        if(list.size() == 0){
+            System.out.println("Empty!!!");
+        }
+        int max = list.get(0);
+        for(int j = 0; j < list.size(); j++) {
+            if(max < list.get(j)){
+                max = list.get(j);
+            }
+        }
+        max = (int)Math.sqrt(max *max);
+        this.prime = max;
+        while(prime != 0){
+            boolean isprime = true;
+            for(int j = 2;j < prime;j++){
+                if(prime % j == 0){
+                    isprime = false;
+                }
+            }
+            if(isprime){
+                break;
+            }
+            prime --;
+        }
+        primeOK = true;
     }
 
     @Override
     public void buildLinearHash(SeqList list) {
-        // TODO Auto-generated method stub
-        
+        // TODO
     }
 
     @Override
