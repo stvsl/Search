@@ -32,6 +32,7 @@ public interface iSearch {
      *             查询的元素
      ***/
     int search(int key);
+    
     /***
      * 普通模式
      * 返回查找元素所在位置
@@ -55,6 +56,7 @@ public interface iSearch {
      *             升降序 true为升序模式，false为降序模式
      ***/
     int binarySearch(int key, boolean high);
+
     /***
      * 普通模式
      * 返回查找元素所在位置（二分法）
@@ -79,6 +81,7 @@ public interface iSearch {
      *             顺序表位置
      ***/
     int hash(int i);
+
     /***
      * 哈希模式
      * 获取相关元素的哈希值
@@ -100,6 +103,7 @@ public interface iSearch {
      *          线性表传入
      ***/
     void buildLinearHash(SeqList list);
+
     /***
      * 哈希模式
      * 线性探测模式哈希表生成
@@ -125,6 +129,7 @@ public interface iSearch {
      *          请在使用配置模式时使用有参，内置模式下请使用无参
      ***/
     void buildLinkedHash(SeqList list);
+
     /***
      * 哈希模式
      * 链式模式哈希表生成

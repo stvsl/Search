@@ -18,6 +18,8 @@ public class App {
         println(s.LinearHashSearch(6));
         println("链式哈希表构建");
         s.buildLinkedHash(seq);
+        s.printLinkHash();
+        println("链式哈希表查找");
         println(s.LInkedHashSearch(6));
     }
 
@@ -37,6 +39,7 @@ public class App {
         println(s.LinearHashSearch(7));
         println("链式哈希表构建：");
         s.buildLinkedHash();
+        s.printSeqHash();
         println("查找元素：");
         println(s.LInkedHashSearch(7));
     }

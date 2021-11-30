@@ -20,23 +20,36 @@ class Map{
 
 public class Search implements iSearch {
 
-    //内置线性表
+    /***
+     * 内置模式使用的数据存储器，默认为int
+     ***/
     int[] elements = null;
     
-    //哈希素数状态
+    /***
+     * 哈希素数状态
+     * 用于判断当前是否获取到了用于计算的特征值
+     ***/
     boolean primeOK = false;
-    //哈希素数值
+    /***
+     * 哈希素数值
+     * 用于计算特征值的参数
+     ***/
     int prime = 1; 
 
-    //顺序哈希数组
+    /***
+     * 线性探测哈希表使用的存储数组
+     ***/
     Map[] Seqhash = null;
 
-    //链式哈希数组
+    /***
+     * 链式哈希表使用的存储数组
+     ***/
     Node[] linkhash = null;
 
     public void buildSeqList(int[] data){
         this.elements = data;
     }
+
     /***
      * 升序自动构造函数
      * @param size
@@ -176,7 +189,11 @@ public class Search implements iSearch {
         }
         return elements[i] % this.prime;
     } 
-    public int gethash(int x) {
+
+    /***
+     * 获取传入元素的哈希值
+     ***/
+     public int gethash(int x) {
         if(!primeOK){
             getHashPrime();
         }
@@ -263,12 +280,26 @@ public class Search implements iSearch {
         return Seqhash[p].i;
     }
 
-    //调试用代码（输出当前线性探测哈希表状态）
+    /***
+     * 调试用代码（输出当前线性探测哈希表内部状态）
+     ***/
     public void printSeqHash(){
         for(int i = 0;i < Seqhash.length;i++){
             System.out.print(Seqhash[i] + "\t");
         }
         System.out.println();
+    }
+
+    public void printLinkHash(){
+        for (int i = 0;i < linkhash.length;i++){
+            System.out.print("特征" + (1+i) + "：\t");
+            Node p = linkhash[i];
+            while(p != null){
+                System.out.print(p.data + "\t");
+                p = p.next;
+            }
+            System.out.println();
+        }
     }
 
     @Override
@@ -314,5 +345,4 @@ public class Search implements iSearch {
         }
         return pos.data.i;
     }
-
 }
