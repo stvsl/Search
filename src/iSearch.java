@@ -99,17 +99,19 @@ public interface iSearch {
      * 哈希模式
      * 线性探测模式哈希表生成
      * 配置模式
+     * 返回当前的apl值
      * @param list
      *          线性表传入
      ***/
-    void buildLinearHash(SeqList list);
+    double buildLinearHash(SeqList list);
 
     /***
      * 哈希模式
      * 线性探测模式哈希表生成
      * 内置模式
+     * 返回当前的apl值
      ***/
-    void buildLinearHash();
+    double buildLinearHash();
 
     /***
      * 哈希模式
@@ -145,4 +147,10 @@ public interface iSearch {
      *          查找的元素值
      */
     int LInkedHashSearch(int key);
+
+    /**
+     * 获取链式哈希表的apl值
+     * @return apl
+     */
+    double getLinkAPL();
 }

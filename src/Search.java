@@ -15,6 +15,7 @@ class Map{
     Map(int data, int i){
         this.data = data;
         this.i = i;
+
     }
 }
 
@@ -236,39 +237,49 @@ public class Search implements iSearch {
     }
 
     @Override
-    public void buildLinearHash(SeqList list) {
+    public double buildLinearHash(SeqList list) {
         getHashPrime(list);
         int size = (int) (list.size()>=this.prime?list.size()*1.2:prime + (prime - elements.length)/2);
+        int sum = 0;
         Seqhash = new Map[size];
         for(int i=0;i < list.size(); i++){
             System.out.print("当前是第" + i + "轮\t" + "元素：" + list.get(i) + "\t");
             int p = hash(list,i);
+            int offset = 0;
             while(Seqhash[p] != null){
                 System.out.print("位置后移" + " " + p + " ");
                 p = (++p)%Seqhash.length;
+                offset ++;
             }
+            sum += offset;
             System.out.println("存储位置：" + p);
             Seqhash[p] = new Map(list.get(i),i); 
             System.out.println("存储完毕");
         }
+        return sum/list.size();
     }
 
     @Override
-    public void buildLinearHash() {
+    public double buildLinearHash() {
         getHashPrime();
         int size = (int) (elements.length>=this.prime?this.elements.length*1.2:prime + (prime - elements.length)/2);
+        int sum = 0;
         Seqhash = new Map[size];
         for(int i = 0; i < elements.length; i++){
             System.out.print("当前是第" + i + "轮\t" + "元素：" + elements[i] + "\t");
             int p = hash(i);
+            int offset = 0;
             while(Seqhash[p] != null){
                 System.out.print("位置后移" + " " + p + " ");
                 p = (++p)%Seqhash.length;
+                offset++;
             }
+            sum += offset;
             System.out.println("存储位置：" + p);
             Seqhash[p] = new Map(elements[i],i);
         }
         System.out.println("存储完毕");
+        return sum/elements.length;
     }
 
     @Override
@@ -282,7 +293,7 @@ public class Search implements iSearch {
 
     /***
      * 调试用代码（输出当前线性探测哈希表内部状态）
-     ***/
+    ***/
     public void printSeqHash(){
         for(int i = 0;i < Seqhash.length;i++){
             System.out.print(Seqhash[i] + "\t");
@@ -344,5 +355,22 @@ public class Search implements iSearch {
             }
         }
         return pos.data.i;
+    }
+
+    @Override
+    public double getLinkAPL() {
+        int sum = 0;
+        int elenum = 0;
+        for(int i = 0; i < linkhash.length; i++){
+            Node pos = linkhash[i];
+            int offset = 0;
+            while(pos.next != null){
+                pos = pos.next;
+                offset++;
+                elenum++;
+                sum += offset;
+            }
+        }
+        return sum/elenum;
     }
 }
