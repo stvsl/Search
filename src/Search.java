@@ -89,6 +89,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int search(int key) {
         int result = -1;
         for(int i = 0; i < elements.length; i++){
@@ -100,6 +101,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int search(SeqList list, int key) {
         int result = -1;
         for (int i = 0; i < list.size(); i++) {
@@ -113,6 +115,7 @@ public class Search implements iSearch {
 
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int binarySearch(int key,boolean high) {
         return binarySearch(key, high,this.elements.length,0);
     }
@@ -132,6 +135,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int binarySearch(SeqList list, int key, boolean high) {
         return binarySearch(list, key, high, list.size(), 0);
     }
@@ -184,6 +188,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int hash(int i) {
         if(!primeOK){
             getHashPrime();
@@ -202,6 +207,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int hash(SeqList list, int i) {
         if(!primeOK){
             getHashPrime(list);
@@ -237,6 +243,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public double buildLinearHash(SeqList list) {
         getHashPrime(list);
         int size = (int) (list.size()>=this.prime?list.size()*1.2:prime + (prime - elements.length)/2);
@@ -260,6 +267,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public double buildLinearHash() {
         getHashPrime();
         int size = (int) (elements.length>=this.prime?this.elements.length*1.2:prime + (prime - elements.length)/2);
@@ -283,6 +291,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int LinearHashSearch(int key) {
         int p = gethash(key);
         while(Seqhash[p].data != key) {
@@ -314,6 +323,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public void buildLinkedHash(SeqList list) {
         linkhash = new Node[this.prime];
         for(int i = 0;i < prime;i++){
@@ -330,6 +340,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public void buildLinkedHash() {
         linkhash = new Node[this.prime];
         for(int i = 0; i < prime; i++){
@@ -346,6 +357,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public int LInkedHashSearch(int key) {
         int p = gethash(key);
         Node pos = linkhash[p];
@@ -358,6 +370,7 @@ public class Search implements iSearch {
     }
 
     @Override
+    //鼠标移动到方法名上可以看到注释哦～
     public double getLinkAPL() {
         int sum = 0;
         int elenum = 0;
